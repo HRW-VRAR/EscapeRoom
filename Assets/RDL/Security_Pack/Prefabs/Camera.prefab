@@ -530,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotate_amount: 45
   rotate_speed: 1
+  cam: {fileID: 0}
 --- !u!1 &185254
 GameObject:
   m_ObjectHideFlags: 0
