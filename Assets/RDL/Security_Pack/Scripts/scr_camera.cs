@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SpatialTracking;
 
 public class scr_camera : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class scr_camera : MonoBehaviour
         }
 
 		XROrigin.transform.SetParent(cam.transform, false);
+
+		var trd = XROrigin.transform.GetChild(0).GetChild(0).GetComponent<TrackedPoseDriver>();
+		trd.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
 
 		//cam.tag = "MainCamera";
 		//cam.targetTexture = null;
