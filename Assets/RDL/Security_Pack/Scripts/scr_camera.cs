@@ -48,8 +48,16 @@ public class scr_camera : MonoBehaviour
 
 		XROrigin.transform.SetParent(cam.transform, false);
 
-		var trd = XROrigin.transform.GetChild(0).GetChild(0).GetComponent<TrackedPoseDriver>();
+		var camOffsetTransform = XROrigin.transform.GetChild(0);
+		var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
 		trd.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
+		for (int i = 0; i < camOffsetTransform.childCount; i++)
+        {
+			var child = camOffsetTransform.GetChild(i);
+			Vector3 childLP = child.localPosition;
+			childLP.y = 0;
+			child.localPosition = childLP;
+        }
 
 		//cam.tag = "MainCamera";
 		//cam.targetTexture = null;
