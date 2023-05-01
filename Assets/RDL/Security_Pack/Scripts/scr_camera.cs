@@ -38,6 +38,12 @@ public class scr_camera : MonoBehaviour
 	public void activateCamera()
 	{
 		Camera mainCam = Camera.main;
+
+		if (mainCam == cam)
+        {
+			return;
+        }
+
 		cam.tag = "MainCamera";
 		cam.targetTexture = null;
 		mainCam.enabled = false;
