@@ -45,8 +45,7 @@ public class scr_camera : MonoBehaviour
 			return;
         }
 
-		Transform cameraParent = cam.transform.parent;
-		XROrigin.transform.SetParent(cameraParent, false);
+		XROrigin.transform.SetParent(cam.transform, false);
 
 		cam.tag = "MainCamera";
 		cam.targetTexture = null;
