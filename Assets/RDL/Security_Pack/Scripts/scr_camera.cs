@@ -7,6 +7,7 @@ public class scr_camera : MonoBehaviour
 	public float rotate_amount;
 	public float rotate_speed;
 	public Camera cam;
+	public GameObject XROrigin;
 
 	private float initial_y;
 	private bool rendered = false;
@@ -43,6 +44,9 @@ public class scr_camera : MonoBehaviour
         {
 			return;
         }
+
+		Transform cameraParent = cam.transform.parent;
+		XROrigin.transform.SetParent(cameraParent, true);
 
 		cam.tag = "MainCamera";
 		cam.targetTexture = null;

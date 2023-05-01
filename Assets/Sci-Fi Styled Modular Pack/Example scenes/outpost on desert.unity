@@ -622,6 +622,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1141266317}
+    - target: {fileID: 11456786, guid: 696e5bd12772e4f30a08a8fdac10df48, type: 3}
+      propertyPath: XROrigin
+      value: 
+      objectReference: {fileID: 1527356342}
+    - target: {fileID: 11456786, guid: 696e5bd12772e4f30a08a8fdac10df48, type: 3}
+      propertyPath: rotate_speed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696e5bd12772e4f30a08a8fdac10df48, type: 3}
 --- !u!4 &32667760 stripped
