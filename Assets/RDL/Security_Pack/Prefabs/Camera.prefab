@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 2352006}
   m_Layer: 0
   m_Name: Lens_Shape
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 2313436}
   m_Layer: 0
   m_Name: Wall_Mount
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 409320}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 2388948}
   m_Layer: 0
   m_Name: Lens
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 11456786}
   m_Layer: 0
   m_Name: Swivel
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -532,6 +532,7 @@ MonoBehaviour:
   rotate_speed: 1
   cam: {fileID: 0}
   XROrigin: {fileID: 0}
+  character: {fileID: 0}
 --- !u!1 &185254
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +546,7 @@ GameObject:
   - component: {fileID: 2316490}
   m_Layer: 0
   m_Name: Angle
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,7 +630,7 @@ GameObject:
   - component: {fileID: 2340898}
   m_Layer: 0
   m_Name: Camera_Shape
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,7 +718,7 @@ GameObject:
   - component: {fileID: 7800820397074703582}
   m_Layer: 0
   m_Name: Grab Interactable
-  m_TagString: Untagged
+  m_TagString: VisibleCameraPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -752,7 +753,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5516983267264065625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

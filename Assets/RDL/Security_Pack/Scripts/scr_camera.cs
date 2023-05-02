@@ -68,8 +68,11 @@ public class scr_camera : MonoBehaviour
 
 		// change layer and tag of cctv camera container
 		var cctvCam = transform.parent.gameObject;
-		cctvCam.layer = LayerMask.NameToLayer("ActiveCCTVCam");
+		var activeCamLayer = LayerMask.NameToLayer("ActiveCCTVCam");
+		cctvCam.layer = activeCamLayer;
 		cctvCam.tag = "ActiveCCTVCam";
+
+		RecursiveSetLayerIfTagged(cctvCam.transform, activeCamLayer, "VisibleCameraPart");
 
 		// notify player character
 		character.onCCTVActivated();
@@ -77,5 +80,18 @@ public class scr_camera : MonoBehaviour
 		//cam.tag = "MainCamera";
 		//cam.targetTexture = null;
 		//mainCam.enabled = false;
+	}
+
+	private void RecursiveSetLayerIfTagged(Transform parent, int layer, string tag)
+	{
+		for (int i = 0; i < parent.childCount; i++)
+		{
+			var child = parent.GetChild(i);
+			if (child.tag == tag)
+			{
+				child.gameObject.layer = layer;
+			}
+			RecursiveSetLayerIfTagged(child, layer, tag);
+		}
 	}
 }

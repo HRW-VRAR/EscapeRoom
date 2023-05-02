@@ -50,6 +50,20 @@ public class CharacterScript : MonoBehaviour
             var cam = activeCCTVCams[i];
             cam.layer = 0;
             cam.tag = "Untagged";
+            RecursiveSetLayerIfTagged(cam.transform, 0, "VisibleCameraPart");
+        }
+    }
+
+    private void RecursiveSetLayerIfTagged(Transform parent, int layer, string tag)
+    {
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            var child = parent.GetChild(i);
+            if (child.tag == tag)
+            {
+                child.gameObject.layer = layer;
+            }
+            RecursiveSetLayerIfTagged(child, layer, tag);
         }
     }
 

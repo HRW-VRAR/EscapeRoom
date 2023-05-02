@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ActiveCCTVCam
+  - VisibleCameraPart
   layers:
   - Default
   - TransparentFX
