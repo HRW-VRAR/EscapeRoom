@@ -74,5 +74,7 @@ public class CharacterScript : MonoBehaviour
     {
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(true);
+
+        Camera.main.cullingMask |= (1 << (LayerMask.NameToLayer("Player Character") - 1));
     }
 }
