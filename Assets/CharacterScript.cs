@@ -43,6 +43,8 @@ public class CharacterScript : MonoBehaviour
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(false);
 
+        Camera.main.cullingMask &= ~(1 << (LayerMask.NameToLayer("Player Character") - 1));
+
         // Remove layer and tag from previously active cctv camera
         GameObject[] activeCCTVCams = GameObject.FindGameObjectsWithTag("ActiveCCTVCam");
         for (int i = 0; i < activeCCTVCams.Length; i++)
