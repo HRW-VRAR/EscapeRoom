@@ -9,6 +9,7 @@ public class scr_camera : MonoBehaviour
 	public float rotate_speed;
 	public Camera cam;
 	public GameObject XROrigin;
+	public CharacterScript character;
 
 	private float initial_y;
 	private bool rendered = false;
@@ -64,6 +65,8 @@ public class scr_camera : MonoBehaviour
 				xrController.m_bInCam = true;
             }
         }
+
+		character.onCCTVActivated();
 
 		//cam.tag = "MainCamera";
 		//cam.targetTexture = null;
