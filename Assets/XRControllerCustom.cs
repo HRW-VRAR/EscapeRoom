@@ -21,6 +21,9 @@ namespace UnityEngine.XR.Interaction.Toolkit
     /// <seealso cref="ActionBasedController"/>
     public class XRControllerCustom : XRController
     {
+        [HideInInspector]
+        public bool m_bInCam = false;
+
         /// <inheritdoc />
         protected override void UpdateTrackingInput(XRControllerState controllerState)
         {
@@ -28,7 +31,8 @@ namespace UnityEngine.XR.Interaction.Toolkit
             if (controllerState == null)
                 return;
 
-            controllerState.position.y = -0.3f;
+            if (m_bInCam)
+                controllerState.position.y = -0.3f;
 
             /*
             controllerState.inputTrackingState = InputTrackingState.None;

@@ -57,6 +57,12 @@ public class scr_camera : MonoBehaviour
 			Vector3 childLP = child.localPosition;
 			childLP.y = 0;
 			child.localPosition = childLP;
+
+			var xrController = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRControllerCustom>();
+			if (xrController != null)
+            {
+				xrController.m_bInCam = true;
+            }
         }
 
 		//cam.tag = "MainCamera";
