@@ -39,5 +39,17 @@ public class CharacterScript : MonoBehaviour
                 xrController.m_bInCam = false;
             }
         }
+
+        var canvas = Camera.main.transform.Find("Canvas").gameObject;
+        canvas.SetActive(false);
+    }
+
+    /**
+     * Event handler that is called when a cctv camera is activated.
+     **/
+    public void onCCTVActivated()
+    {
+        var canvas = Camera.main.transform.Find("Canvas").gameObject;
+        canvas.SetActive(true);
     }
 }
