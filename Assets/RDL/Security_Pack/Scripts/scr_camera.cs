@@ -66,6 +66,16 @@ public class scr_camera : MonoBehaviour
             }
         }
 
+		// Remove layer and tag from previously active cctv camera
+		GameObject[] activeCCTVCams = GameObject.FindGameObjectsWithTag("ActiveCCTVCam");
+		for (int i = 0; i < activeCCTVCams.Length; i++)
+		{
+			var cam = activeCCTVCams[i];
+			cam.layer = 0;
+			cam.tag = "Untagged";
+			RecursiveSetLayerIfTagged(cam.transform, 0, "VisibleCameraPart");
+		}
+
 		// change layer and tag of cctv camera container
 		var cctvCam = transform.parent.gameObject;
 		var activeCamLayer = LayerMask.NameToLayer("ActiveCCTVCam");
