@@ -42,6 +42,15 @@ public class CharacterScript : MonoBehaviour
 
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(false);
+
+        // Remove layer and tag from previously active cctv camera
+        GameObject[] activeCCTVCams = GameObject.FindGameObjectsWithTag("ActiveCCTVCam");
+        for (int i = 0; i < activeCCTVCams.Length; i++)
+        {
+            var cam = activeCCTVCams[i];
+            cam.layer = 0;
+            cam.tag = "Untagged";
+        }
     }
 
     /**

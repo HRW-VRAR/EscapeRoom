@@ -66,6 +66,12 @@ public class scr_camera : MonoBehaviour
             }
         }
 
+		// change layer and tag of cctv camera container
+		var cctvCam = transform.parent.gameObject;
+		cctvCam.layer = LayerMask.NameToLayer("ActiveCCTVCam");
+		cctvCam.tag = "ActiveCCTVCam";
+
+		// notify player character
 		character.onCCTVActivated();
 
 		//cam.tag = "MainCamera";
