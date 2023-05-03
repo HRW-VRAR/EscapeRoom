@@ -108,6 +108,12 @@ public class CharacterScript : MonoBehaviour
             }
         }
 
+        var snapTurnProvider = XROrigin.GetComponent<UnityEngine.XR.Interaction.Toolkit.DeviceBasedSnapTurnProvider>();
+        if (snapTurnProvider != null)
+        {
+            snapTurnProvider.enabled = true;
+        }
+
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(false);
 
@@ -150,6 +156,12 @@ public class CharacterScript : MonoBehaviour
 
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(true);
+
+        var snapTurnProvider = XROrigin.GetComponent<UnityEngine.XR.Interaction.Toolkit.DeviceBasedSnapTurnProvider>();
+        if (snapTurnProvider != null)
+        {
+            snapTurnProvider.enabled = false;
+        }
 
         Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("Character Model"));
     }
