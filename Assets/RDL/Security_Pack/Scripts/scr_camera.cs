@@ -67,6 +67,14 @@ public class scr_camera : MonoBehaviour
             {
 				xrController.m_bInCam = true;
             }
+
+			var childCam = child.GetComponent<Camera>();
+			if (childCam != null)
+            {
+				Quaternion childRot = child.localRotation;
+				childRot.y = 0;
+				child.localRotation = childRot;
+            }
         }
 
 		// Remove layer and tag from previously active cctv camera
