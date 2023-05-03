@@ -11,10 +11,36 @@ public class CharacterScript : MonoBehaviour
     private bool isInCam = false;
     private CCTVCameraActivationData cctvCameraActivationData = null;
 
+    private GameObject cachedCamera = null;
+    private GameObject cachedCharacterModel = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        var camOffsetTransform = XROrigin.transform.GetChild(0);
+        for (int i = 0; i < camOffsetTransform.childCount; i++)
+        {
+            var child = camOffsetTransform.GetChild(i);
+
+            var cameraComponent = child.GetComponent<Camera>();
+            if (cameraComponent != null)
+            {
+                cachedCamera = child.gameObject;
+                break;
+            }
+        }
+
+        int characterModelLayer = LayerMask.NameToLayer("Character Model");
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var child = transform.GetChild(i);
+
+            if (child.gameObject.layer == characterModelLayer)
+            {
+                cachedCharacterModel = child.gameObject;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -26,6 +52,22 @@ public class CharacterScript : MonoBehaviour
             transform.localPosition = transform.localPosition + xrOriginTransform.localPosition;
             xrOriginTransform.localPosition = Vector3.zero;
             xrOriginTransform.hasChanged = false;
+        }
+        
+        if (!isInCam)
+        {
+            float yRotation = xrOriginTransform.localEulerAngles.y;
+            if (cachedCamera != null)
+            {
+                yRotation += cachedCamera.transform.localEulerAngles.y;
+            }
+
+            if (cachedCharacterModel != null)
+            {
+                Vector3 characterRotation = cachedCharacterModel.transform.localEulerAngles;
+                characterRotation.y = yRotation;
+                cachedCharacterModel.transform.localEulerAngles = characterRotation;
+            }
         }
     }
 
