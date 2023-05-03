@@ -47,9 +47,12 @@ public class scr_camera : MonoBehaviour
 			return;
         }
 
+		CCTVCameraActivationData activationData = new CCTVCameraActivationData();
+
 		XROrigin.transform.SetParent(cam.transform, false);
 
 		Vector3 xrOriginRot = XROrigin.transform.localEulerAngles;
+		activationData.xrOriginYRotation = xrOriginRot.y;
 		xrOriginRot.y = 0;
 		XROrigin.transform.localEulerAngles = xrOriginRot;
 
@@ -57,6 +60,7 @@ public class scr_camera : MonoBehaviour
 		var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
 		trd.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
 		Vector3 camOffsetLP = camOffsetTransform.localPosition;
+		activationData.cameraOffsetYPosition = camOffsetLP.y;
 		camOffsetLP.y = 0;
 		camOffsetTransform.localPosition = camOffsetLP;
 		for (int i = 0; i < camOffsetTransform.childCount; i++)
@@ -92,7 +96,7 @@ public class scr_camera : MonoBehaviour
 		RecursiveSetLayerIfTagged(cctvCam.transform, activeCamLayer, "VisibleCameraPart");
 
 		// notify player character
-		character.onCCTVActivated();
+		character.onCCTVActivated(activationData);
 
 		//cam.tag = "MainCamera";
 		//cam.targetTexture = null;

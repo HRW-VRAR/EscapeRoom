@@ -9,6 +9,7 @@ public class CharacterScript : MonoBehaviour
     public GameObject XROrigin;
 
     private bool isInCam = false;
+    private CCTVCameraActivationData cctvCameraActivationData = null;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +37,18 @@ public class CharacterScript : MonoBehaviour
         XROrigin.transform.localPosition = Vector3.zero; //TODO: is this needed/wanted?
         XROrigin.transform.hasChanged = false;
 
+        Vector3 xrOriginRot = XROrigin.transform.localEulerAngles;
+        xrOriginRot.y = cctvCameraActivationData.xrOriginYRotation;
+        XROrigin.transform.localEulerAngles = xrOriginRot;
+
         isInCam = false;
 
         var camOffsetTransform = XROrigin.transform.GetChild(0);
         var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
         trd.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
+        Vector3 camOffsetLP = camOffsetTransform.localPosition;
+        camOffsetLP.y = cctvCameraActivationData.cameraOffsetYPosition;
+        camOffsetTransform.localPosition = camOffsetLP;
         for (int i = 0; i < camOffsetTransform.childCount; i++)
         {
             var child = camOffsetTransform.GetChild(i);
@@ -84,9 +92,10 @@ public class CharacterScript : MonoBehaviour
     /**
      * Event handler that is called when a cctv camera is activated.
      **/
-    public void onCCTVActivated()
+    public void onCCTVActivated(CCTVCameraActivationData activationData)
     {
         isInCam = true;
+        cctvCameraActivationData = activationData;
 
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(true);
