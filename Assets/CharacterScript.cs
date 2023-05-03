@@ -17,7 +17,13 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Transform xrOriginTransform = XROrigin.transform;
+        if (xrOriginTransform.hasChanged)
+        {
+            transform.localPosition = transform.localPosition + xrOriginTransform.localPosition;
+            xrOriginTransform.localPosition = Vector3.zero;
+            xrOriginTransform.hasChanged = false;
+        }
     }
 
     public void activateCamera()
