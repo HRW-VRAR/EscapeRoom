@@ -8,6 +8,8 @@ public class CharacterScript : MonoBehaviour
 
     public GameObject XROrigin;
 
+    private isInCam = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class CharacterScript : MonoBehaviour
     void Update()
     {
         Transform xrOriginTransform = XROrigin.transform;
-        if (xrOriginTransform.hasChanged)
+        if (xrOriginTransform.hasChanged && !isInCam)
         {
             transform.localPosition = transform.localPosition + xrOriginTransform.localPosition;
             xrOriginTransform.localPosition = Vector3.zero;
@@ -31,6 +33,10 @@ public class CharacterScript : MonoBehaviour
         var XROriginParent = transform.GetChild(0);
 
         XROrigin.transform.SetParent(XROriginParent, false);
+        XROrigin.transform.localPosition = Vector3.zero; //TODO: is this needed/wanted?
+        XROrigin.transform.hasChanged = false;
+
+        isInCam = false;
 
         var camOffsetTransform = XROrigin.transform.GetChild(0);
         var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
@@ -80,6 +86,8 @@ public class CharacterScript : MonoBehaviour
      **/
     public void onCCTVActivated()
     {
+        isInCam = true;
+
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(true);
 
