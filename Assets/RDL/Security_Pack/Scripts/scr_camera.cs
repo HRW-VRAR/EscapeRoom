@@ -74,8 +74,14 @@ public class scr_camera : MonoBehaviour
 			if (xrController != null)
             {
 				xrController.m_bInCam = true;
-            }
-        }
+			}
+
+			var xrRayInteractor = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>();
+			if (xrRayInteractor != null)
+			{
+				xrRayInteractor.interactionLayers &= ~(1 << UnityEngine.XR.Interaction.Toolkit.InteractionLayerMask.NameToLayer("Walkable area"));
+			}
+		}
 
 		// Remove layer and tag from previously active cctv camera
 		GameObject[] activeCCTVCams = GameObject.FindGameObjectsWithTag("ActiveCCTVCam");

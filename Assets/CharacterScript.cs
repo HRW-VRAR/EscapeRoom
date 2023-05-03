@@ -100,6 +100,12 @@ public class CharacterScript : MonoBehaviour
             {
                 xrController.m_bInCam = false;
             }
+
+            var xrRayInteractor = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>();
+            if (xrRayInteractor != null)
+            {
+                xrRayInteractor.interactionLayers |= (1 << UnityEngine.XR.Interaction.Toolkit.InteractionLayerMask.NameToLayer("Walkable area"));
+            }
         }
 
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
