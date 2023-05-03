@@ -8,7 +8,7 @@ public class CharacterScript : MonoBehaviour
 
     public GameObject XROrigin;
 
-    private isInCam = false;
+    private bool isInCam = false;
 
     // Start is called before the first frame update
     void Start()
