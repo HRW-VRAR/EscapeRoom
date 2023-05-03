@@ -49,9 +49,9 @@ public class scr_camera : MonoBehaviour
 
 		XROrigin.transform.SetParent(cam.transform, false);
 
-		Quaternion xrOriginRot = XROrigin.transform.localRotation;
+		Vector3 xrOriginRot = XROrigin.transform.localEulerAngles;
 		xrOriginRot.y = 0;
-		XROrigin.transform.localRotation = xrOriginRot;
+		XROrigin.transform.localEulerAngles = xrOriginRot;
 
 		var camOffsetTransform = XROrigin.transform.GetChild(0);
 		var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
