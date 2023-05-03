@@ -8054,7 +8054,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_TeleportationProvider: {fileID: 1527356347}
+  m_TeleportationProvider: {fileID: 0}
   m_MatchOrientation: 0
   m_TeleportTrigger: 2
   m_Teleporting:
@@ -15167,9 +15167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1527356344}
   - component: {fileID: 1527356343}
-  - component: {fileID: 1527356346}
   - component: {fileID: 1527356345}
-  - component: {fileID: 1527356347}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -15222,7 +15220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f2c0214c9b494fa7eb5b8b2c02885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_System: {fileID: 1527356346}
+  m_System: {fileID: 1919627722}
   m_TurnAmount: 45
   m_DebounceTime: 0.5
   m_EnableTurnLeftRight: 1
@@ -15231,33 +15229,6 @@ MonoBehaviour:
   m_Controllers:
   - {fileID: 1475349218}
   m_DeadZone: 0.75
---- !u!114 &1527356346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527356342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Timeout: 10
-  m_XROrigin: {fileID: 1527356343}
---- !u!114 &1527356347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527356342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_System: {fileID: 1527356346}
 --- !u!1001 &1527578226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19948,6 +19919,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1919627720}
   - component: {fileID: 1919627721}
+  - component: {fileID: 1919627723}
+  - component: {fileID: 1919627722}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -19985,6 +19958,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   XROrigin: {fileID: 1527356342}
+--- !u!114 &1919627722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919627719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Timeout: 10
+  m_XROrigin: {fileID: 1527356343}
+--- !u!114 &1919627723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919627719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 1919627722}
 --- !u!1001 &1932658840
 PrefabInstance:
   m_ObjectHideFlags: 0
