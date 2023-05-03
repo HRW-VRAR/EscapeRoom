@@ -15228,6 +15228,7 @@ MonoBehaviour:
   m_TurnUsage: 0
   m_Controllers:
   - {fileID: 1475349218}
+  - {fileID: 1119205171}
   m_DeadZone: 0.75
 --- !u!1001 &1527578226
 PrefabInstance:
