@@ -52,6 +52,9 @@ public class scr_camera : MonoBehaviour
 		var camOffsetTransform = XROrigin.transform.GetChild(0);
 		var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
 		trd.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
+		Vector3 camOffsetLP = camOffsetTransform.localPosition;
+		camOffsetLP.y = 0;
+		camOffsetTransform.localPosition = camOffsetLP;
 		for (int i = 0; i < camOffsetTransform.childCount; i++)
         {
 			var child = camOffsetTransform.GetChild(i);
