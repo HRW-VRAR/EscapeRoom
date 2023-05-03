@@ -49,6 +49,10 @@ public class scr_camera : MonoBehaviour
 
 		XROrigin.transform.SetParent(cam.transform, false);
 
+		Quaternion xrOriginRot = XROrigin.transform.localRotation;
+		xrOriginRot.y = 0;
+		XROrigin.transform.localRotation = xrOriginRot;
+
 		var camOffsetTransform = XROrigin.transform.GetChild(0);
 		var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
 		trd.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
@@ -66,14 +70,6 @@ public class scr_camera : MonoBehaviour
 			if (xrController != null)
             {
 				xrController.m_bInCam = true;
-            }
-
-			var childCam = child.GetComponent<Camera>();
-			if (childCam != null)
-            {
-				Quaternion childRot = child.localRotation;
-				childRot.y = 0;
-				child.localRotation = childRot;
             }
         }
 
