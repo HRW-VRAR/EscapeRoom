@@ -94,8 +94,11 @@ public class CharacterScript : MonoBehaviour
      **/
     public void onCCTVActivated(CCTVCameraActivationData activationData)
     {
-        isInCam = true;
-        cctvCameraActivationData = activationData;
+        if (!isInCam)
+        {
+            isInCam = true;
+            cctvCameraActivationData = activationData;
+        }
 
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(true);
