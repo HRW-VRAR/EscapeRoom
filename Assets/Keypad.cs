@@ -11,6 +11,7 @@ public class Keypad : MonoBehaviour
     public string code;
 
     public UnityEvent correctCodeEntered;
+    public UnityEvent incorrectCodeEntered;
 
     private string text = string.Empty;
 
@@ -29,6 +30,35 @@ public class Keypad : MonoBehaviour
     private void UpdateDisplay()
     {
         display.text = text;
+    }
+
+    private void SetButtonsInteractable(bool interactable)
+    {
+        var buttonContainer = transform.GetChild(0);
+        for (int i = 0; i < buttonContainer.childCount; i++)
+        {
+            var child = buttonContainer.GetChild(i);
+
+            var xrGrabInteractable = child.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+            if (xrGrabInteractable != null)
+            {
+                xrGrabInteractable.enabled = interactable;
+            }
+        }
+    }
+
+    private void _incorrectCodeEnteredStart()
+    {
+        SetButtonsInteractable(false);
+        display.transform.parent.GetComponent<Renderer>().material.color = Color.red;
+
+        Invoke("_incorrectCodeEnteredEnd", 3);
+    }
+
+    private void _incorrectCodeEnteredEnd()
+    {
+        SetButtonsInteractable(true);
+        display.transform.parent.GetComponent<Renderer>().material.color = Color.white;
     }
 
     public void AppendString(string c)
@@ -53,6 +83,10 @@ public class Keypad : MonoBehaviour
         if (text == code)
         {
             correctCodeEntered.Invoke();
+        } else
+        {
+            incorrectCodeEntered.Invoke();
+            _incorrectCodeEnteredStart();
         }
     }
 }
