@@ -59,6 +59,7 @@ public class Keypad : MonoBehaviour
     {
         SetButtonsInteractable(true);
         display.transform.parent.GetComponent<Renderer>().material.color = Color.white;
+        text = string.Empty;
     }
 
     public void AppendString(string c)
