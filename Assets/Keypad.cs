@@ -84,6 +84,8 @@ public class Keypad : MonoBehaviour
         if (text == code)
         {
             correctCodeEntered.Invoke();
+            display.transform.parent.GetComponent<Renderer>().material.color = Color.green;
+            SetButtonsInteractable(false);
         } else
         {
             incorrectCodeEntered.Invoke();
