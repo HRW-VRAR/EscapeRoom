@@ -28,3 +28,5 @@ Prefabs:
   - Keypad that allows the user to enter a 4-digit code
 - Assets/Hot_Wire
   - Hot wire puzzle/game
+
+TODO: external resources (cctv camera, scene, character model, packages)
