@@ -14,3 +14,9 @@ Scripts:
 - Assets/XRControllerCustom.cs
   - Attached to the XR controller objects
   - Subclass used to override the controller's vertical position when in a CCTV camera
+- Assets/Keypad.cs
+  - Attached to the keypad
+  - Keeps track of the keypad input
+  - Updates and clears the keypad input: AppendString(string) and ClearText()
+  - Checks the keypad input against the configured code when the user presses enter: Enter()
+    - Invokes the relevant event and displays the verification status by changing the background color of the display

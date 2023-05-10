@@ -47,6 +47,9 @@ public class Keypad : MonoBehaviour
         }
     }
 
+    /**
+     * Helper method that disables all buttons, turns the display red and invokes a timed execution of _incorrectCodeEnteredEnd.
+     **/
     private void _incorrectCodeEnteredStart()
     {
         SetButtonsInteractable(false);
@@ -55,6 +58,9 @@ public class Keypad : MonoBehaviour
         Invoke("_incorrectCodeEnteredEnd", 3);
     }
 
+    /**
+     * Helper method that enables all buttons, resets the display color and the text.
+     **/
     private void _incorrectCodeEnteredEnd()
     {
         SetButtonsInteractable(true);
@@ -63,6 +69,10 @@ public class Keypad : MonoBehaviour
         UpdateDisplay();
     }
 
+    /**
+     * Appends a string to the keypad text and updates the display.
+     * If the string is too long, aborts.
+     **/
     public void AppendString(string c)
     {
         if (text.Length + c.Length > MAX_DIGITS)
@@ -74,12 +84,20 @@ public class Keypad : MonoBehaviour
         UpdateDisplay();
     }
 
+    /**
+     * Clears the content of the keypad and updates the display.
+     **/
     public void ClearText()
     {
         text = string.Empty;
         UpdateDisplay();
     }
 
+    /**
+     * Checks the currently entered code.
+     * If correct, invokes the correctCodeEntered event, makes the display background green and disables all buttons.
+     * If incorrect, invokes the incorrectCodeEntered event and temporarily makes the display background red and disables all buttons. Also clears the text.
+     **/
     public void Enter()
     {
         if (text == code)
