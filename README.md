@@ -20,3 +20,9 @@ Scripts:
   - Updates and clears the keypad input: AppendString(string) and ClearText()
   - Checks the keypad input against the configured code when the user presses enter: Enter()
     - Invokes the relevant event and displays the verification status by changing the background color of the display
+
+Prefabs:
+- Assets/KeyPad
+  - Keypad that allows the user to enter a 4-digit code
+- Assets/Hot_Wire
+  - Hot wire puzzle/game
