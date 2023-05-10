@@ -11,3 +11,6 @@ Scripts:
   - Allows the user to switch back to the character model's POV by calling activateCamera()
   - Shows and hides the "EXIT" button UI
   - Enables/disables camera and interaction layers and the controller's snap turn provider when needed
+- Assets/XRControllerCustom.cs
+  - Attached to the XR controller objects
+  - Subclass used to override the controller's vertical position when in a CCTV camera
