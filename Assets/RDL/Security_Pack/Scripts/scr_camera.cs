@@ -12,7 +12,6 @@ public class scr_camera : MonoBehaviour
 	public CharacterScript character;
 
 	private float initial_y;
-	private bool rendered = false;
 
 
 	// Use this for initialization
