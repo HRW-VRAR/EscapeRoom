@@ -20,6 +20,8 @@ Scripts:
   - Updates and clears the keypad input: AppendString(string) and ClearText()
   - Checks the keypad input against the configured code when the user presses enter: Enter()
     - Invokes the relevant event and displays the verification status by changing the background color of the display
+- Assets/HotWireScript.cs
+  - TODO
 
 Prefabs:
 - Assets/KeyPad
