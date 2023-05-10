@@ -71,21 +71,29 @@ public class CharacterScript : MonoBehaviour
         }
     }
 
+    /**
+     * Moves the camera back to the character model. Restores the XR origin's position and rotation.
+     **/
     public void activateCamera()
     {
         var XROriginParent = transform.GetChild(0);
 
+        // Move XR Origin back to character
         XROrigin.transform.SetParent(XROriginParent, false);
-        XROrigin.transform.localPosition = Vector3.zero; //TODO: is this needed/wanted?
+        XROrigin.transform.localPosition = Vector3.zero;
         XROrigin.transform.hasChanged = false;
 
+        // Restore XR Origin rotation
         Vector3 xrOriginRot = XROrigin.transform.localEulerAngles;
         xrOriginRot.y = cctvCameraActivationData.xrOriginYRotation;
         XROrigin.transform.localEulerAngles = xrOriginRot;
 
+        // Update isInCam flag
         isInCam = false;
 
         var camOffsetTransform = XROrigin.transform.GetChild(0);
+
+        // Restore position (height) tracking and restore Y position
         var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
         trd.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
         Vector3 camOffsetLP = camOffsetTransform.localPosition;
@@ -95,12 +103,14 @@ public class CharacterScript : MonoBehaviour
         {
             var child = camOffsetTransform.GetChild(i);
 
+            // Tell controllers we're not in a CCTV camera anymore
             var xrController = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRControllerCustom>();
             if (xrController != null)
             {
                 xrController.m_bInCam = false;
             }
 
+            // Enable walking
             var xrRayInteractor = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>();
             if (xrRayInteractor != null)
             {
@@ -108,15 +118,18 @@ public class CharacterScript : MonoBehaviour
             }
         }
 
+        // Enable snap turn provider
         var snapTurnProvider = XROrigin.GetComponent<UnityEngine.XR.Interaction.Toolkit.DeviceBasedSnapTurnProvider>();
         if (snapTurnProvider != null)
         {
             snapTurnProvider.enabled = true;
         }
 
+        // Hide canvas containing camera exit button
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(false);
 
+        // Hide character model from main camera
         Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Character Model"));
 
         // Remove layer and tag from previously active cctv camera
@@ -150,19 +163,23 @@ public class CharacterScript : MonoBehaviour
     {
         if (!isInCam)
         {
+            // Set isInCam flag and store cctv camera activation data
             isInCam = true;
             cctvCameraActivationData = activationData;
         }
 
+        // Enable canvas containing camera exit button
         var canvas = Camera.main.transform.Find("Canvas").gameObject;
         canvas.SetActive(true);
 
+        // Disable snap turn provider
         var snapTurnProvider = XROrigin.GetComponent<UnityEngine.XR.Interaction.Toolkit.DeviceBasedSnapTurnProvider>();
         if (snapTurnProvider != null)
         {
             snapTurnProvider.enabled = false;
         }
 
+        // Show character model in main camera
         Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("Character Model"));
     }
 }
