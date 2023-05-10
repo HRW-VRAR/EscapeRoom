@@ -24,20 +24,12 @@ public class scr_camera : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//transform.rotation = Quaternion.Euler(transform.eulerAngles.x, (Mathf.Sin(Time.realtimeSinceStartup * rotate_speed) * rotate_amount) + transform.eulerAngles.y, transform.eulerAngles.z);
 		transform.rotation = Quaternion.Euler(transform.eulerAngles.x, initial_y + Mathf.Sin(Time.realtimeSinceStartup * rotate_speed) * rotate_amount, transform.eulerAngles.z);
-
-		if (false && Time.realtimeSinceStartup >= 15 && !rendered)
-        {
-			rendered = true;
-			//cam.Render();
-			Camera mainCam = Camera.main;
-			cam.tag = "MainCamera";
-			cam.targetTexture = null;
-			mainCam.enabled = false;
-        }
 	}
 
+	/**
+	 * Activates the CCTV camera. Moves the XR Origin to the camera's transform hierarchy and position.
+	 **/
 	public void activateCamera()
 	{
 		Camera mainCam = Camera.main;
@@ -49,20 +41,25 @@ public class scr_camera : MonoBehaviour
 
 		CCTVCameraActivationData activationData = new CCTVCameraActivationData();
 
+		// Move XR Origin into CCTV camera structure, keep local coordinates
 		XROrigin.transform.SetParent(cam.transform, false);
 
+		// Reset XR Origin rotation
 		Vector3 xrOriginRot = XROrigin.transform.localEulerAngles;
 		activationData.xrOriginYRotation = xrOriginRot.y;
 		xrOriginRot.y = 0;
 		XROrigin.transform.localEulerAngles = xrOriginRot;
 
 		var camOffsetTransform = XROrigin.transform.GetChild(0);
+
+		// Disable position (height) tracking and reset Y position
 		var trd = camOffsetTransform.GetChild(0).GetComponent<TrackedPoseDriver>();
 		trd.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
 		Vector3 camOffsetLP = camOffsetTransform.localPosition;
 		activationData.cameraOffsetYPosition = camOffsetLP.y;
 		camOffsetLP.y = 0;
 		camOffsetTransform.localPosition = camOffsetLP;
+		// Reset Y position of child transforms and find relevant components
 		for (int i = 0; i < camOffsetTransform.childCount; i++)
         {
 			var child = camOffsetTransform.GetChild(i);
@@ -70,12 +67,14 @@ public class scr_camera : MonoBehaviour
 			childLP.y = 0;
 			child.localPosition = childLP;
 
+			// Tell controllers we're in a CCTV camera
 			var xrController = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRControllerCustom>();
 			if (xrController != null)
             {
 				xrController.m_bInCam = true;
 			}
 
+			// Disable walking
 			var xrRayInteractor = child.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>();
 			if (xrRayInteractor != null)
 			{
@@ -83,7 +82,7 @@ public class scr_camera : MonoBehaviour
 			}
 		}
 
-		// Remove layer and tag from previously active cctv camera
+		// Remove layer and tag from previously active CCTV camera
 		GameObject[] activeCCTVCams = GameObject.FindGameObjectsWithTag("ActiveCCTVCam");
 		for (int i = 0; i < activeCCTVCams.Length; i++)
 		{
@@ -93,7 +92,7 @@ public class scr_camera : MonoBehaviour
 			RecursiveSetLayerIfTagged(cam.transform, 0, "VisibleCameraPart");
 		}
 
-		// change layer and tag of cctv camera container
+		// Change layer and tag of CCTV camera container
 		var cctvCam = transform.parent.gameObject;
 		var activeCamLayer = LayerMask.NameToLayer("ActiveCCTVCam");
 		cctvCam.layer = activeCamLayer;
@@ -101,12 +100,8 @@ public class scr_camera : MonoBehaviour
 
 		RecursiveSetLayerIfTagged(cctvCam.transform, activeCamLayer, "VisibleCameraPart");
 
-		// notify player character
+		// Notify player character
 		character.onCCTVActivated(activationData);
-
-		//cam.tag = "MainCamera";
-		//cam.targetTexture = null;
-		//mainCam.enabled = false;
 	}
 
 	private void RecursiveSetLayerIfTagged(Transform parent, int layer, string tag)
