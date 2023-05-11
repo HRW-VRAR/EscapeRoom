@@ -11,13 +11,12 @@ public class HotWireScript : MonoBehaviour
     private float collisionTime = 0f;
     private bool isColliding = false;
     private Color initialColor;
-    private Color targetColor = Color.red;
+    private Color targetColor = new Color(1f, 0f, 0f, 0.5f);
 
     // Start is called before the first frame update
     void Start()
     {
         initialColor = GetComponent<Renderer>().material.color;
-        targetColor.a = initialColor.a;
     }
 
     // Update is called once per frame
