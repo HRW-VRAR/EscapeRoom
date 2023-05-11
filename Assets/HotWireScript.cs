@@ -5,25 +5,44 @@ using UnityEngine;
 public class HotWireScript : MonoBehaviour
 {
     public GameObject handle;
+    public float shortCircuitTime = 5f;
 
     private Dictionary<Transform, Color> transformToColorMap = new Dictionary<Transform, Color>();
+    private float collisionTime = 0f;
+    private bool isColliding = false;
+    private Color initialColor;
+    private Color targetColor = Color.red;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        initialColor = GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isColliding)
+        {
+            // Update collision time
+            collisionTime += Time.deltaTime;
+
+            // Update renderer material color
+            GetComponent<Renderer>().material.color = Color.Lerp(initialColor, targetColor, collisionTime / shortCircuitTime);
+
+            if (collisionTime >= shortCircuitTime)
+            {
+                // TODO
+            }
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
         {
+            isColliding = true;
+
             for (int i = 0; i < handle.transform.childCount; i++)
             {
                 var child = handle.transform.GetChild(i);
@@ -45,6 +64,8 @@ public class HotWireScript : MonoBehaviour
     {
         if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
         {
+            isColliding = false;
+
             for (int i = 0; i < handle.transform.childCount; i++)
             {
                 var child = handle.transform.GetChild(i);
