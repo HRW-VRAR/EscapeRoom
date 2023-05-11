@@ -25,7 +25,7 @@ public class HotWireFinishScript : MonoBehaviour
             return;
         }
 
-        if (GetComponent<Collider>().transform.parent.gameObject == hotWireScript.handle)
+        if (other.transform.parent.gameObject == hotWireScript.handle)
         {
             hotWireScript.Finish();
             this.enabled = false;
