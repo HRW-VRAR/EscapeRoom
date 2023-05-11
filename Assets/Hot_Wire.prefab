@@ -107,7 +107,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7870069559216404561}
-  - component: {fileID: 3189884257159990688}
   m_Layer: 0
   m_Name: Hot_Wire
   m_TagString: Untagged
@@ -133,19 +132,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3189884257159990688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2455185173869963651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbcf680f80e85274791f5655eb3879df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handle: {fileID: 637182409511284690}
 --- !u!1 &8519810221908119547
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbcf680f80e85274791f5655eb3879df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handle: {fileID: 0}
+  handle: {fileID: 637182409511284690}
 --- !u!4 &5250922617618280305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f48678f07d5c88949a568f1e6cfc2efe,
