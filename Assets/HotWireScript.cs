@@ -41,7 +41,7 @@ public class HotWireScript : MonoBehaviour
             for (int i = 0; i < handle.transform.childCount; i++)
             {
                 var child = handle.transform.GetChild(i);
-                child.GetComponent<Renderer>().material.color = transformToColorMap.Get(child);
+                child.GetComponent<Renderer>().material.color = transformToColorMap[child];
             }
         }
     }
