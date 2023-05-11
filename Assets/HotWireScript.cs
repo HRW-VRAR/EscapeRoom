@@ -14,10 +14,15 @@ public class HotWireScript : MonoBehaviour
     private Color initialColor;
     private Color targetColor = new Color(1f, 0f, 0f, 0.75f);
 
+    private GameObject newHandle;
+
     // Start is called before the first frame update
     void Start()
     {
         initialColor = GetComponent<Renderer>().material.color;
+
+        newHandle = Instantiate(handle);
+        newHandle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,7 +39,7 @@ public class HotWireScript : MonoBehaviour
 
             if (collisionTime >= shortCircuitTime)
             {
-                // TODO
+                Reset();
             }
         } else
         {
@@ -45,6 +50,17 @@ public class HotWireScript : MonoBehaviour
             // Update renderer material color
             GetComponent<Renderer>().material.color = Color.Lerp(initialColor, targetColor, collisionTime / shortCircuitTime);
         }
+    }
+
+    private void Reset()
+    {
+        Destroy(handle);
+        handle = newHandle;
+        newHandle = Instantiate(handle);
+        handle.SetActive(true);
+
+        collisionTime = 0f;
+        GetComponent<Renderer>().material.color = initialColor;
     }
 
     void OnCollisionEnter(Collision collision)
