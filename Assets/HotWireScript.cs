@@ -6,6 +6,8 @@ public class HotWireScript : MonoBehaviour
 {
     public GameObject handle;
 
+    private Dictionary<Transform, Color> transformToColorMap = new Dictionary<Transform, Color>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +22,27 @@ public class HotWireScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision);
-        Debug.Log(collision.gameObject);
-        Debug.Log(collision.transform);
-        Debug.Log(collision.transform.parent);
-        Debug.Log(collision.transform.parent?.gameObject);
         if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
         {
-            handle.GetComponent<Renderer>().material.color = Color.red;
+            for (int i = 0; i < handle.transform.childCount; i++)
+            {
+                var child = handle.transform.GetChild(i);
+                var childMaterial = child.GetComponent<Renderer>().material;
+                transformToColorMap.Add(child, childMaterial.color);
+                childMaterial.color = Color.red;
+            }
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
+        {
+            for (int i = 0; i < handle.transform.childCount; i++)
+            {
+                var child = handle.transform.GetChild(i);
+                child.GetComponent<Renderer>().material.color = transformToColorMap.Get(child);
+            }
         }
     }
 }
