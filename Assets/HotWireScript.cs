@@ -6,6 +6,7 @@ public class HotWireScript : MonoBehaviour
 {
     public GameObject handle;
     public float shortCircuitTime = 5f;
+    public float cooldownMultiplier = 0.2f;
 
     private Dictionary<Transform, Color> transformToColorMap = new Dictionary<Transform, Color>();
     private float collisionTime = 0f;
@@ -34,6 +35,9 @@ public class HotWireScript : MonoBehaviour
             {
                 // TODO
             }
+        } else
+        {
+            collisionTime -= Time.deltaTime * cooldownMultiplier;
         }
     }
 
