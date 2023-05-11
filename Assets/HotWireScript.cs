@@ -12,7 +12,7 @@ public class HotWireScript : MonoBehaviour
     private float collisionTime = 0f;
     private bool isColliding = false;
     private Color initialColor;
-    private Color targetColor = new Color(1f, 0f, 0f, 0.5f);
+    private Color targetColor = new Color(1f, 0f, 0f, 0.75f);
 
     // Start is called before the first frame update
     void Start()
