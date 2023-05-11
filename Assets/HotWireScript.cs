@@ -17,6 +17,7 @@ public class HotWireScript : MonoBehaviour
     void Start()
     {
         initialColor = GetComponent<Renderer>().material.color;
+        targetColor.a = initialColor.a;
     }
 
     // Update is called once per frame
