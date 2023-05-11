@@ -21,7 +21,7 @@ public class HotWireScript : MonoBehaviour
     {
         initialColor = GetComponent<Renderer>().material.color;
 
-        newHandle = Instantiate(handle);
+        newHandle = Instantiate(handle, handle.transform.parent);
         newHandle.SetActive(false);
     }
 
@@ -56,7 +56,7 @@ public class HotWireScript : MonoBehaviour
     {
         Destroy(handle);
         handle = newHandle;
-        newHandle = Instantiate(handle);
+        newHandle = Instantiate(handle, handle.transform.parent);
         handle.SetActive(true);
 
         isColliding = false;
