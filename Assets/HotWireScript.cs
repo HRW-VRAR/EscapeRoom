@@ -28,7 +28,7 @@ public class HotWireScript : MonoBehaviour
             {
                 var child = handle.transform.GetChild(i);
                 var childMaterial = child.GetComponent<Renderer>().material;
-                transformToColorMap.Add(child, childMaterial.color);
+                transformToColorMap[child] = childMaterial.color;
                 childMaterial.color = Color.red;
             }
         }
