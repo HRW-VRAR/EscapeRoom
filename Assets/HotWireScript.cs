@@ -27,7 +27,14 @@ public class HotWireScript : MonoBehaviour
             for (int i = 0; i < handle.transform.childCount; i++)
             {
                 var child = handle.transform.GetChild(i);
-                var childMaterial = child.GetComponent<Renderer>().material;
+                var childRenderer = child.GetComponent<Renderer>();
+                // If child does not have a renderer, skip
+                if (childRenderer == null)
+                    continue;
+                var childMaterial = childRenderer.material;
+                // If child is already in map, skip
+                if (transformToColorMap.ContainsKey(child))
+                    continue;
                 transformToColorMap[child] = childMaterial.color;
                 childMaterial.color = Color.red;
             }
@@ -41,7 +48,15 @@ public class HotWireScript : MonoBehaviour
             for (int i = 0; i < handle.transform.childCount; i++)
             {
                 var child = handle.transform.GetChild(i);
-                child.GetComponent<Renderer>().material.color = transformToColorMap[child];
+                var childRenderer = child.GetComponent<Renderer>();
+                // If child does not have a renderer, skip
+                if (childRenderer == null)
+                    continue;
+                // If child is not in map, skip
+                if (!transformToColorMap.ContainsKey(child))
+                    continue;
+                childRenderer.material.color = transformToColorMap[child];
+                transformToColorMap.Remove(child);
             }
         }
     }
