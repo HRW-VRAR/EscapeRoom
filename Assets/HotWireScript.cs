@@ -11,6 +11,7 @@ public class HotWireScript : MonoBehaviour
     private Dictionary<Transform, Color> transformToColorMap = new Dictionary<Transform, Color>();
     private float collisionTime = 0f;
     private bool isColliding = false;
+    private bool isFinished = false;
     private Color initialColor;
     private Color targetColor = new Color(1f, 0f, 0f, 0.75f);
 
@@ -28,6 +29,11 @@ public class HotWireScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFinished)
+        {
+            return;
+        }
+
         if (isColliding)
         {
             // Update collision time
@@ -66,6 +72,11 @@ public class HotWireScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (isFinished)
+        {
+            return;
+        }
+
         if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
         {
             isColliding = true;
@@ -89,6 +100,11 @@ public class HotWireScript : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
+        if (isFinished)
+        {
+            return;
+        }
+
         if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
         {
             isColliding = false;
@@ -107,5 +123,14 @@ public class HotWireScript : MonoBehaviour
                 transformToColorMap.Remove(child);
             }
         }
+    }
+
+    public void Finish()
+    {
+        isFinished = true;
+        Color color = Color.green;
+        color.a = 0.75f;
+        GetComponent<Renderer>().material.color = color;
+        // TODO
     }
 }
