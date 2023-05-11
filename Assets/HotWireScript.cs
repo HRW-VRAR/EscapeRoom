@@ -20,7 +20,7 @@ public class HotWireScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == handle)
+        if (collision.gameObject == handle || collision.transform.parent.gameObject == handle)
         {
             handle.GetComponent<Renderer>().material.color = Color.red;
         }
