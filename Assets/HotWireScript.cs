@@ -59,6 +59,7 @@ public class HotWireScript : MonoBehaviour
         newHandle = Instantiate(handle);
         handle.SetActive(true);
 
+        isColliding = false;
         collisionTime = 0f;
         GetComponent<Renderer>().material.color = initialColor;
     }
