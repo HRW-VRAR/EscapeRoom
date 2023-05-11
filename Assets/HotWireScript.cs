@@ -27,7 +27,7 @@ public class HotWireScript : MonoBehaviour
         {
             // Update collision time
             collisionTime += Time.deltaTime;
-            collisionTime = Math.min(collisionTime, shortCircuitTime);
+            collisionTime = Mathf.min(collisionTime, shortCircuitTime);
 
             // Update renderer material color
             GetComponent<Renderer>().material.color = Color.Lerp(initialColor, targetColor, collisionTime / shortCircuitTime);
@@ -40,7 +40,7 @@ public class HotWireScript : MonoBehaviour
         {
             // Update collision time
             collisionTime -= Time.deltaTime * cooldownMultiplier;
-            collisionTime = Math.max(collisionTime, 0f);
+            collisionTime = Mathf.max(collisionTime, 0f);
 
             // Update renderer material color
             GetComponent<Renderer>().material.color = Color.Lerp(initialColor, targetColor, collisionTime / shortCircuitTime);
