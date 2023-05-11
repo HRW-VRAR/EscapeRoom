@@ -38,6 +38,9 @@ public class HotWireScript : MonoBehaviour
         } else
         {
             collisionTime -= Time.deltaTime * cooldownMultiplier;
+
+            // Update renderer material color
+            GetComponent<Renderer>().material.color = Color.Lerp(initialColor, targetColor, collisionTime / shortCircuitTime);
         }
     }
 
