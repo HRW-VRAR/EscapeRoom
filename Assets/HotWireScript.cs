@@ -24,8 +24,8 @@ public class HotWireScript : MonoBehaviour
         Debug.Log(collision.gameObject);
         Debug.Log(collision.transform);
         Debug.Log(collision.transform.parent);
-        Debug.Log(collision.transform.parent.gameObject);
-        if (collision.gameObject == handle || collision.transform.parent.gameObject == handle)
+        Debug.Log(collision.transform.parent?.gameObject);
+        if (collision.gameObject == handle || collision.transform.parent?.gameObject == handle)
         {
             handle.GetComponent<Renderer>().material.color = Color.red;
         }
