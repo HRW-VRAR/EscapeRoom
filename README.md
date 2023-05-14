@@ -1,4 +1,4 @@
-# EscapeRoom
+# EscapeRoom | [GitHub](https://github.com/HRW-VRAR/EscapeRoom)
 
 Scene: Assets/Sci-Fi Styled Modular Pack/Example scenes/outpost on desert.unity
 
