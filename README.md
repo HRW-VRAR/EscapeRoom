@@ -2,7 +2,7 @@
 
 Scripts:
 - Assets/RDL/Security_Pack/Scripts/scr_camera.cs
-  - Attached to the swivel of the CCTV cameras
+  - Attached to the swivel of the CCTV cameras, replacing existing script
   - Allows the CCTV camera POV to be activated by calling activateCamera()
   - Optionally allows automatic rotation (disabled because this would cause issues in VR)
 - Assets/CharacterScript.cs
@@ -35,4 +35,23 @@ Prefabs:
 - Assets/Hot_Wire
   - Hot wire puzzle/game
 
-TODO: external resources (cctv camera, scene, character model, packages)
+External assets:
+- FREE PBR Security Camera
+  - CCTV camera model by Red Dot Lab
+  - https://assetstore.unity.com/packages/3d/props/electronics/free-pbr-security-camera-70061
+  - Location: Assets/RDL/Security_Pack
+- Character Pack: Free Sample
+  - Character model by Supercyan
+  - https://assetstore.unity.com/packages/3d/characters/humanoids/character-pack-free-sample-79870
+  - Location: Assets/Supercyan Character Pack Free Sample
+- Sci-Fi Styled Modular Pack
+  - Futuristic assets and scenes by karboosx
+  - https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913
+  - Location: Assets/Sci-Fi Styled Modular Pack
+- Oculus Integration
+  - Oculus integration by Oculus
+  - NOTE: Only import Oculus/SampleFramework/Core/CustomHands, the rest is not needed
+  - https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022
+  - Location: Assets/Oculus/SampleFramework/Core/CustomHands
+
+TODO: packages, scene used
