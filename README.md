@@ -56,4 +56,8 @@ External assets:
   - https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022
   - Location: Assets/Oculus/SampleFramework/Core/CustomHands
 
-TODO: packages
+Packages:
+- TextMeshPro
+  - Used to display text (keypad display and buttons, CCTV exit button)
+- XR Interaction Toolkit
+  - Used for VR interactions (teleportation, rotation, etc.)
