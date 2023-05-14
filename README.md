@@ -1,5 +1,7 @@
 # EscapeRoom
 
+Scene: Assets/Sci-Fi Styled Modular Pack/Example scenes/outpost on desert.unity
+
 Scripts:
 - Assets/RDL/Security_Pack/Scripts/scr_camera.cs
   - Attached to the swivel of the CCTV cameras, replacing existing script
@@ -54,4 +56,4 @@ External assets:
   - https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022
   - Location: Assets/Oculus/SampleFramework/Core/CustomHands
 
-TODO: packages, scene used
+TODO: packages
