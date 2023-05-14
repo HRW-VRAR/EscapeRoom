@@ -21,7 +21,13 @@ Scripts:
   - Checks the keypad input against the configured code when the user presses enter: Enter()
     - Invokes the relevant event and displays the verification status by changing the background color of the display
 - Assets/HotWireScript.cs
-  - TODO
+  - Attached to the wire
+  - Has options to change how long it takes for the wire to overheat
+  - Checks for collision with handle and indicates it visually
+  - Resets the hot wire when the handle and the wire have been colliding for too long
+- Assets/HotWireFinishScript.cs
+  - Attached to the finish trigger
+  - Notifies the HotWireScript when the handle reaches the end of the wire
 
 Prefabs:
 - Assets/KeyPad
