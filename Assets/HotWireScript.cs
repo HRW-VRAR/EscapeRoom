@@ -8,6 +8,9 @@ public class HotWireScript : MonoBehaviour
     public float shortCircuitTime = 5f;
     public float cooldownMultiplier = 0.2f;
 
+    public UnityEvent hotWireSuccess;
+    public UnityEvent hotWireFailure;
+
     private Dictionary<Transform, Color> transformToColorMap = new Dictionary<Transform, Color>();
     private float collisionTime = 0f;
     private bool isColliding = false;
@@ -68,6 +71,8 @@ public class HotWireScript : MonoBehaviour
         isColliding = false;
         collisionTime = 0f;
         GetComponent<Renderer>().material.color = initialColor;
+
+        hotWireFailure.Invoke();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -131,6 +136,6 @@ public class HotWireScript : MonoBehaviour
         Color color = Color.green;
         color.a = 0.75f;
         GetComponent<Renderer>().material.color = color;
-        // TODO
+        hotWireSuccess.Invoke();
     }
 }
