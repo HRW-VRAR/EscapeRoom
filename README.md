@@ -1,6 +1,10 @@
-# EscapeRoom | [GitHub](https://github.com/HRW-VRAR/EscapeRoom)
+# EscapeRoom
 
 Scene: Assets/Sci-Fi Styled Modular Pack/Example scenes/outpost on desert.unity
+
+Links:
+- [GitHub](https://github.com/HRW-VRAR/EscapeRoom)
+- [Video](https://drive.google.com/file/d/1TWc5h1iVxtIHuK1EIgyWGGCrFNnEqXaF/view?usp=sharing) - NOTE: this does not seem to play in the browser, download required. ~300MB
 
 Scripts:
 - Assets/RDL/Security_Pack/Scripts/scr_camera.cs
